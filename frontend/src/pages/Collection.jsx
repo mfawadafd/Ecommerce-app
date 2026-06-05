@@ -6,4 +6,4 @@ const Collection = () => {
   )
 }
 
-export default C
+export default Collection
