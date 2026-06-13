@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import {useParams} from 'react-router-dom'
 import {ShopContext} from '../context/ShopContext'
 import { assets } from '../assets/assets';
+import RelatedProducts from '../components/RelatedProducts';
 
 const Product = () => {
  const {ProductId} = useParams();
@@ -24,7 +25,7 @@ useEffect(()=>{
 },[ProductId,products])
 
   return productData ? (
-    <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
+    <div className='border-t-2 border-gray-400 pt-10 transition-opacity ease-in duration-500 opacity-100'>
       {/* ---------------Products data-------------- */}
       <div className="flex flex-col sm:flex-row gap-12 lg:gap-20 w-full max-w-7xl mx-auto px-4 ">
 
@@ -42,9 +43,9 @@ useEffect(()=>{
           </div>
         </div>
         {/* ------------Products Info------------ */}
-        <div className='flex-1'>
+        <div className='flex-1 mx-w-xl]'>
            <h1 className='font-medium text-2xl mt-2'>{productData.name}</h1>
-           <div className='flex item-center gap-1 mt-2'>
+           <div className='flex items-center gap-1 mt-2'>
               <img src={assets.star_icon} alt="" className="w-3.5" />
               <img src={assets.star_icon} alt="" className="w-3.5" />
               <img src={assets.star_icon} alt="" className="w-3.5" />
@@ -63,9 +64,27 @@ useEffect(()=>{
               </div>
            </div>
            <button className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
-           <hr className='mt-8 w-4/5'/>
+           <hr className='mt-5 w-full border-gary-300'/>
+           <div className='text-sm text-gary-500 mt-4 flex flex-col gap-1 w-full'>
+                  <p>100% Original Product.</p>
+                  <p>Cash on delivery is available on this product.</p>
+                  <p>Easy return exchange policy within 7 days</p>
+           </div>
         </div>
       </div>
+      {/* ------------Description and Review section------------ */}
+      <div className='mt-20'>
+        <div className='flex'>
+          <b className='border px-5 py-3 text-sm'>Description</b>
+          <p className='border px-5 py-3 text-sm'>Reviews (122)</p>
+        </div>
+        <div className='flex flex-col gap-4 border px-6 py-6 text-sm text-gary-500'>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati blanditiis nulla sint libero quos delectus aliquam sunt tenetur?</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci ab quod vel ducimus laborum quam omnis reprehenderit dolor blanditiis facere consequatur quas doloremque quia quasi, reiciendis cupiditate ea id animi?</p>
+        </div>
+      </div>
+        {/* ------------Display Related Products------------- */}
+        <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
     </div>
   ): <div className='opacity-0'></div>
 }
